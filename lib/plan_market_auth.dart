@@ -38,7 +38,7 @@ class PlanMarketAuth with ChangeNotifier {
 
 
   Future<bool> singIn(String email, String senha) async {
-    String string_uri = '$_url$_resource:singInWhithPassword?key=$_apiKey';
+    String string_uri = '$_url$_resource:singInWithPassword?key=$_apiKey';
     Uri uri= Uri.parse(string_uri);
 
     var response = await http.post(
