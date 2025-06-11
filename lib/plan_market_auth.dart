@@ -8,9 +8,9 @@ class PlanMarketAuth with ChangeNotifier {
   String? message = null;
   String? token = null;
 
-  String _url = "https://identitytoolkit.googleapis.com/";
-  String _resource = "/v1/accounts";
-  String _apiKey = "AIzaSyDMqk1S_fpBkMNZNvs2aeRI_bEQ4itYvS8";
+  final _url = "https://identitytoolkit.googleapis.com/";
+  final _resource = "/v1/accounts";
+  final _apiKey = "AIzaSyDMqk1S_fpBkMNZNvs2aeRI_bEQ4itYvS8";
 
   Future<bool> singUp(String email, String senha) async {
       String string_uri = '$_url$_resource:singUp?key=$_apiKey';
@@ -29,9 +29,11 @@ class PlanMarketAuth with ChangeNotifier {
         message = "Cadastro realizdo com sucesso.";
         var body = jsonDecode(response.body);
         token = body['idToken'];
+        print(message);
         return true;
       } else {
         message = "Erro ao cadastrar.";
+        print(message);
         return false;
       }
   }
@@ -52,11 +54,13 @@ class PlanMarketAuth with ChangeNotifier {
 
     if (response.statusCode == 200){
       message = "Login realizado com sucesso.";
+      print(message);
       var body = jsonDecode(response.body);
       token = body['idToken'];
       return true;
     } else {
       message = "Erro ao realizar login.";
+      print(message);
       return false;
     }
 
