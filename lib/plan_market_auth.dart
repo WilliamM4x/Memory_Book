@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 
 class PlanMarketAuth with ChangeNotifier {
 
-  String? message = null;
-  String? token = null;
+  String? message;
+  String? token;
 
   final _url = "https://identitytoolkit.googleapis.com/";
   final _resource = "/v1/accounts";
@@ -16,20 +16,17 @@ class PlanMarketAuth with ChangeNotifier {
       String string_uri = '$_url$_resource:singUp?key=$_apiKey';
       Uri uri= Uri.parse(string_uri);
 
-      var response = await http.post(
-        uri,
-        body: json.encode({
+      var response = await http.post(uri, body: {
           'email': email,
           'password': senha,
           'returnSecureToken': 'true'
-        }),
-      );
+        });
 
       if (response.statusCode == 200){
         message = "Cadastro realizdo com sucesso.";
         var body = jsonDecode(response.body);
         token = body['idToken'];
-        print(message);
+        print("$message $token");
         return true;
       } else {
         message = "Erro ao cadastrar.";
@@ -45,11 +42,11 @@ class PlanMarketAuth with ChangeNotifier {
 
     var response = await http.post(
       uri,
-      body: json.encode({
+      body: {
         'email': email,
         'password': senha,
         'returnSecureToken': 'true'
-      }),
+      }
     );
 
     if (response.statusCode == 200){
@@ -60,7 +57,7 @@ class PlanMarketAuth with ChangeNotifier {
       return true;
     } else {
       message = "Erro ao realizar login.";
-      print(message);
+      print("$message $token");
       return false;
     }
 
