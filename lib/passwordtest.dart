@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum FeedbackStrongPass{
   invalida(message: "A senha precisa ter 8 caracteres ou mais.", color: Colors.black, validate: false),
   fraca(message: "Senha fraca.",color: Colors.red, validate: false),
-  moderada(message: "Senha moderada.", color: Colors.yellow, validate: true),
+  moderada(message: "Senha moderada.", color: Colors.blue, validate: true),
   forte(message: "Senha forte.",color: Colors.green,validate: true);
   const FeedbackStrongPass({required this.message, required this.color, required this.validate});
   final String message;
