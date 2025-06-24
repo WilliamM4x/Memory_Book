@@ -11,7 +11,6 @@ enum FeedbackStrongPass{
   final bool validate;
 }
 
-class StrongPassService {
   FeedbackStrongPass checarForca(String password) {
 
     if (password.length < 8) {
@@ -38,4 +37,3 @@ class StrongPassService {
       return FeedbackStrongPass.forte;
     }
   }
-}
