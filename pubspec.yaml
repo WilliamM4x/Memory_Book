@@ -35,10 +35,14 @@ dependencies:
   provider: ^6.1.5
   geocode: ^1.0.3
   geocoding: ^3.0.0
-
+  passwordtest:
+    git:
+      url: https://github.com/WilliamM4x/Memory_Book.git
+      ref: passtest
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  google_maps_flutter_android: ^2.16.1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,7 @@
 # memory_book
 
+[//]: # (API GOOGLE MAPS: AIzaSyBgZVbRcznR0r-os_WbYT7va6useDrFwkY)
+
 This project is a new alternative to register your favorite places.
 
 ## Getting Started

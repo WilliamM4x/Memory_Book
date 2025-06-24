@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:passwordtest/passwordtest.dart';
 import 'package:provider/provider.dart';
-
 import '../Provider/auth_provider.dart';
+
 import '../routes.dart';
 
-class RegisterPage extends StatelessWidget {
+
+class RegisterPage extends StatefulWidget{
+  const RegisterPage({Key? key}) : super(key: key);
+
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+
+  //Pegando do pacote
+  PassTest verifyPassword = PassTest();
+  FeedbackStrongPass _forcaDaSenha = FeedbackStrongPass.invalida;
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final agreePasswordController = TextEditingController();
+
 
   void register(BuildContext context, String process) {
     String email = emailController.text;
@@ -35,6 +50,8 @@ class RegisterPage extends StatelessWidget {
     }
 
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +86,16 @@ class RegisterPage extends StatelessWidget {
                             labelText: 'Senha',
                             hintText: 'Senha',
                           ),
-                        ),
+                          onChanged: (password) {
+                            setState(() {
+                              _forcaDaSenha = verifyPassword.checarForca(password);
+                            });
+                          },),
+
+                      ),
+                      Text(
+                        _forcaDaSenha.message,
+                        style: TextStyle(color: _forcaDaSenha.color, fontWeight: FontWeight.bold),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
@@ -86,9 +112,10 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    register(context, 'signUp?key=');
-                  }, child: Text("Registrar"),
+                  onPressed: _forcaDaSenha.validate? (){
+                  register(context, 'signUp?key=');
+                  }: null,
+                child: Text("Registrar"),
                 ),
               ]
           ),
