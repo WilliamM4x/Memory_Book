@@ -11,8 +11,8 @@ enum FeedbackStrongPass{
   final bool validate;
 }
 
+class PassTest {
   FeedbackStrongPass checarForca(String password) {
-
     if (password.length < 8) {
       return FeedbackStrongPass.invalida;
     }
@@ -37,3 +37,4 @@ enum FeedbackStrongPass{
       return FeedbackStrongPass.forte;
     }
   }
+}
