@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "807668182958",
+    "project_id": "memory-book-ec469",
+    "storage_bucket": "memory-book-ec469.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807668182958:android:b60191399b073bf473a23f",
+        "android_client_info": {
+          "package_name": "com.maxdev.memory_book"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbslH5pMv1Md38GVk0xLSpL9IA6YazFTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
