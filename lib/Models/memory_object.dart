@@ -1,4 +1,5 @@
 class MemoryObject {
+  final String? id; // Optional ID for the memory object
   final String local;
   final String descricao;
   final String data;
@@ -6,6 +7,7 @@ class MemoryObject {
   final List<String> imagens;
 
   MemoryObject({
+    this.id,
     required this.local,
     required this.descricao,
     required this.data,

@@ -31,7 +31,7 @@ class FormMemoryPage extends StatelessWidget {
     }else{
       var localizacao = arguments as String;
       localizationControler.text = localizacao;
-    };
+    }
 
     return Scaffold(
       appBar: AppBar(

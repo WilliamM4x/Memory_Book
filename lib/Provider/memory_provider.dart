@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:memory_book/Models/memory_object.dart';
 
 import '../Components/memory_item.dart';
+import '../Service/memory_service.dart';
 
 class MemoryProvider with ChangeNotifier {
   List<MemoryObject> listaMemory = [];
 
 
   void saveMemory(MemoryObject memory) {
+    MemoryService().addMemory(memory);
     listaMemory.add(memory);
     notifyListeners();
   }

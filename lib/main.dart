@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_book/Pages/dashboard_memorys_page.dart';
 import 'package:memory_book/Pages/login_page.dart';
@@ -5,13 +6,19 @@ import 'package:memory_book/Pages/recovery_page.dart';
 import 'package:memory_book/Provider/auth_provider.dart';
 import 'package:memory_book/routes.dart';
 import 'package:provider/provider.dart';
-
 import 'Pages/form_memory_page.dart';
 import 'Pages/only_memory_page.dart';
 import 'Pages/register_page.dart';
 import 'Provider/memory_provider.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+  //garante que o binding do flutter esteja inicializado
+  WidgetsFlutterBinding.ensureInitialized();
+  //garante a inicialização do firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const App());
 }
 class App extends StatelessWidget {
