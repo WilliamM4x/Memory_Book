@@ -10,19 +10,38 @@ class LoginPage extends StatelessWidget{
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void login (BuildContext context, String process){
+  void login (BuildContext context, String process) {
     String email= emailController.text;
     String password = passwordController.text;
-    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
-    authProvider.auth(process, email, password).then((response){
-      if(response){
-          //toast de sucesso
+    if(email.isNotEmpty || password.isNotEmpty) {
+      AuthProvider authProvider = Provider.of<AuthProvider>(
+          context, listen: false);
+      authProvider.auth(process, email, password).then((response) async {
+        if (response) {
+          final snackBar = SnackBar(
+            content: Text("Bem-vindo ao Memory Book"),
+            backgroundColor: Colors.green[400],
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          await Future.delayed(const Duration(seconds: 2));
+
           Navigator.pushNamed(context, Routes.DASHBOARD);
-      }else{
-        print(authProvider.message);
-        //toast faild
-      }
-    },);
+        } else {
+          final snackBar = SnackBar(
+            content: Text("${authProvider.message
+                .toString()}! Verifique seus dados ou realize o cadastro."),
+            backgroundColor: Colors.green[400],
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      },);
+    }else{
+      final snackBar = SnackBar(
+        content: Text("Preencha o email e a senha."),
+        backgroundColor: Colors.green[400],
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
 
   }
 

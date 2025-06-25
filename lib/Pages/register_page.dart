@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:passwordtest/passwordtest.dart';
 import 'package:provider/provider.dart';
+import '../Components/toast_messege.dart';
 import '../Provider/auth_provider.dart';
 
 import '../routes.dart';
@@ -15,6 +17,7 @@ class RegisterPage extends StatefulWidget{
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
 
   //Pegando do pacote
   PassTest verifyPassword = PassTest();
@@ -38,15 +41,26 @@ class _RegisterPageState extends State<RegisterPage> {
           if (response) {
             //toast de sucesso
             print(authProvider.message);
+            showToastMessage(authProvider.message.toString());
             Navigator.pushNamed(context, Routes.LOGIN);
           } else {
             print(authProvider.message);
-            //toast faild
+            showToastMessage("authProvider.message.toString()");
           }
         });
+      }else{
+        final snackBar = SnackBar(
+          content: Text("As senhas não coincidem"),
+          backgroundColor: Colors.red,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }else{
-      // toast para preencher campo de senhas
+      final snackBar = SnackBar(
+        content: Text("Confirme sua senha"),
+        backgroundColor: Colors.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 
   }

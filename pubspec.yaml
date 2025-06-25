@@ -35,6 +35,8 @@ dependencies:
   provider: ^6.1.5
   geocode: ^1.0.3
   geocoding: ^3.0.0
+  test: ^1.25.15
+  fluttertoast: ^8.2.6
   passwordtest:
     git:
       url: https://github.com/WilliamM4x/Memory_Book.git

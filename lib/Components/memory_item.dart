@@ -4,7 +4,7 @@ import 'package:memory_book/Models/memory_object.dart';
 import 'package:provider/provider.dart';
 
 import '../Provider/memory_provider.dart';
-import 'argument_origin.dart';
+
 import '../routes.dart';
 
 class MemoryItem extends StatelessWidget{
