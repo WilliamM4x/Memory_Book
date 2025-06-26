@@ -24,7 +24,7 @@ class MemoryService {
         local: data['local'] as String? ?? '',
         descricao: data['descricao'] as String? ?? '',
         data: data['data'] as String? ?? '',
-        localizacao: List<String>.from(data['localizacao'] ?? []),
+        localizacao: data['localizacao'] as String? ?? '',
         imagens: List<String>.from(data['imagens'] ?? []),
       );
     }
@@ -72,7 +72,7 @@ class MemoryService {
         local: data['local'] as String? ?? '',
         descricao: data['descricao']as String? ?? '',
         data: data['data']as String? ?? '',
-        localizacao: List<String>.from(data['localizacao'] ?? []),
+        localizacao: data['localizacao']as String? ?? '',
         imagens: List<String>.from(data['imagens'] ?? []),
       );
       listaMemory.add(memory);

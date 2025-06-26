@@ -14,35 +14,65 @@ class OnlyMemoryPage extends StatefulWidget {
 class _OnlyMemoryPageState extends State<OnlyMemoryPage> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(-12.251972442537367, -38.941292755999314);
+  LatLng _targetPosition = const LatLng(-12.251972442537367, -38.941292755999314);
+
+  final Set<Marker> _markers = {};
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    // `addPostFrameCallback` garante que o `context` estará pronto para `ModalRoute`.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Pega o objeto passado pela rota
+      final memoryObject = ModalRoute.of(context)?.settings.arguments as MemoryObject?;
+
+      if (memoryObject != null) {
+        try {
+          // Vamos assumir que 'localizacao' é a string "lat,lng"
+          // Se ainda for uma lista, use: `memoryObject.localizacao.join(',')`
+          List<String> parts = memoryObject.localizacao.split(',');
+
+          if (parts.length == 2) {
+            // 3. CORREÇÃO: Parse da latitude e longitude corretamente
+            final double lat = double.parse(parts[0]);
+            final double lng = double.parse(parts[1]);
+
+            _targetPosition = LatLng(lat, lng);
+
+            // Cria o marcador
+            final marker = Marker(
+              markerId: MarkerId(memoryObject.id ?? 'memory_location'),
+              position: _targetPosition,
+              infoWindow: InfoWindow(
+                title: memoryObject.local,
+                snippet: memoryObject.descricao,
+              ),
+            );
+
+            // Atualiza o estado para adicionar o marcador à lista e reconstruir a tela
+            setState(() {
+              _markers.add(marker);
+            });
+
+          }
+        } catch (e) {
+          print("Erro ao processar a localização: $e");
+        }
+      }
+    });
+  }
+
+
+
+
+  @override
   Widget build(BuildContext context) {
-    var memoryObject =
-        ModalRoute.of(context)?.settings.arguments as MemoryObject;
-
-    final Set<Marker> _markers = {};
-
-    void _onMapCreated(GoogleMapController controller) {
-        _markers.clear();
-        final double lat = double.parse(memoryObject.localizacao[0]);
-        final double lng = double.parse(memoryObject.localizacao[1]);
-        // 2. Criar o objeto LatLng com os valores convertidos
-        final position = LatLng(lat, lng);
-          final marker = Marker(
-            markerId: MarkerId(memoryObject.local),
-            position: position,
-            infoWindow: InfoWindow(
-              title: memoryObject.local,
-              snippet: memoryObject.descricao,
-            ),
-          );
-        setState(() {_markers.add(marker);});
-    }
+    var memoryObject = ModalRoute.of(context)?.settings.arguments as MemoryObject;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,12 +85,13 @@ class _OnlyMemoryPageState extends State<OnlyMemoryPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Text(memoryObject.local),
-              Text(memoryObject.descricao),
+              Text(memoryObject.local,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(memoryObject.descricao,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               Text(memoryObject.data.toString()),
-              Text(memoryObject.localizacao.toString()),
               Container(
-                height: 100,
+                height: 200,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(8),
@@ -109,9 +140,12 @@ class _OnlyMemoryPageState extends State<OnlyMemoryPage> {
                   borderRadius: BorderRadius.circular(9.0,), // Deve ser um pouco menor que o do container
                   child: GoogleMap(
                     onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(target: _center, zoom: 5.0),
+                    initialCameraPosition: CameraPosition(
+                      target: _targetPosition, // Usa a posição correta
+                      zoom: 8.0, // Aumentei o zoom para ver melhor o local
+                    ),
                     markers: _markers,
-                  ),
+                  ), // Usa o Set de marcadores do estado
                 ),
               ),
             ],

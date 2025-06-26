@@ -74,7 +74,7 @@ class DashboardMemorysPageState extends State<DashboardMemorysPage>{
            future: _geoLocation(),
            builder: (context, snapshot) {
              if(snapshot.hasData){
-               localizacao= "${snapshot.data?.latitude.toString()}:${snapshot.data?.longitude.toString()}";
+               localizacao= "${snapshot.data?.latitude.toString()},${snapshot.data?.longitude.toString()}";
                 return Center(
                   child: Column(
                     children: [

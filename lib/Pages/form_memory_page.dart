@@ -142,12 +142,11 @@ class _FormMemoryPageState extends State<FormMemoryPage> {
                 var memoryProvider = Provider.of<MemoryProvider>(context, listen: false);
                 if(memoryObjectProv == null){
                   MemoryObject memoryObject = MemoryObject(
-
                     local: place,
                     descricao: description,
                     data: date,
                     imagens: imagePaths,
-                    localizacao: [localization],
+                    localizacao: localization,
                   );
 
                   memoryProvider.saveMemory(memoryObject);
@@ -158,7 +157,7 @@ class _FormMemoryPageState extends State<FormMemoryPage> {
                     descricao: description,
                     data: date,
                     imagens: imagePaths,
-                    localizacao: [localization],
+                    localizacao: localization,
                   );
                   memoryProvider.updateMemory(memoryObject);
                 }

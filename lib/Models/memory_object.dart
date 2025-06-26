@@ -3,7 +3,7 @@ class MemoryObject {
   final String local;
   final String descricao;
   final String data;
-  final List<String> localizacao;
+  final String localizacao;
   final List<String> imagens;
 
   MemoryObject({
@@ -20,7 +20,7 @@ class MemoryObject {
     String? local,
     String? descricao,
     String? data,
-    List<String>? localizacao,
+    String? localizacao,
     List<String>? imagens,
   }) {
     return MemoryObject(
