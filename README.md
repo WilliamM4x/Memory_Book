@@ -8,5 +8,7 @@ Realizeis testes de widgetes para verificar as mensagens de força de senha, ver
 
 Na pasta ![imagens](imagens) encontram-se imagens que documentam o funcionamento do sistema.
 
-Tela principal do app:<br>
-<img src="https://github.com/user-attachments/assets/e2330adb-f6ad-48f4-9892-dda801a2b5f7" alt="Screenshot do Irriga" width="300" />
+Tela principal do app:
+<br>!<img src="https://github.com/user-attachments/assets/163e3824-eb83-4356-a411-03575c324d84" alt="Memory Book" width="300" />
+Tela da memoria:
+<br>!<img src="https://github.com/user-attachments/assets/0693b05d-3885-47f5-8c8b-57e6e93f91f1" alt="Memory Book" width="300" />
