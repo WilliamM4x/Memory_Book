@@ -69,7 +69,8 @@ class DashboardMemorysPageState extends State<DashboardMemorysPage>{
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
 
-       body: FutureBuilder(
+       body:SafeArea(
+         child:FutureBuilder(
            future: _geoLocation(),
            builder: (context, snapshot) {
              if(snapshot.hasData){
@@ -103,7 +104,7 @@ class DashboardMemorysPageState extends State<DashboardMemorysPage>{
                  child: CircularProgressIndicator(),
                );
              }
-           }),
+           }),),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {

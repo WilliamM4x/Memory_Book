@@ -73,7 +73,8 @@ class _RegisterPageState extends State<RegisterPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
 
-      body: Center(
+      body:SafeArea(
+        child: Center(
         child: SingleChildScrollView(
           reverse: true,
           child: Column(
@@ -133,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ]
           ),
         ),
-      ),
+      ),),
     );
   }
 }

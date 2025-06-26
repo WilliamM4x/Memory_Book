@@ -15,7 +15,8 @@ class RecoveryPage extends StatelessWidget{
          title: Text('Recuperar senha'),
          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
        ),
-       body: Center(
+        body:SafeArea(
+         child:Center(
          child: SingleChildScrollView(
            reverse: true,
            child: Column(
@@ -47,7 +48,7 @@ class RecoveryPage extends StatelessWidget{
              ],
            ),
          )
-       ),
+       ),),
    );
   }
 }

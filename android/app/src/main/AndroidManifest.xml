@@ -7,6 +7,12 @@
         android:label="memory_book"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBtlV5_CJ1L40374O1AicQYCuf6DG-GXx8"
+            />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
